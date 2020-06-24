@@ -33,23 +33,6 @@ public class Website {
     }
 
     private static double idf(ArrayList<Website> wArray, String key) {
-        // inverse document frequency =  log(# total documents / # documents with word)
-        // only one that works
-        //double upper = Math.log(wArray.size());
-        //double bottom = getPagesWithWord(wArray, key) + 1;
-
-        //trying to copy from wikipedia directly ... doesnt work btw
-        // last recently commented out //
-       // double idf = 0;
-       // double N = wArray.size() + 1;
-       // double bottom = 1 + getPagesWithWord(wArray, key);
-       // idf = Math.log(N/bottom);
-        //idf = Math.log10(N) - Math.log10(bottom);
-
-        //attempting differently
-        //double upper = wArray.size() + 1;
-        //double bottom = getPagesWithWord(wArray, key) + 1;
-        //idf = Math.log(upper/bottom);
 
         double idf = 0;
         double numberOfDocuments = wArray.size();
@@ -66,35 +49,12 @@ public class Website {
 
         double tf;
         if (w.words.containsKey(key)) {
-            //double upper = w.words.get(key);
-           // double bottom = w.words.values().size() + w.importantWords.values().size();
-            //tf = upper / bottom;
-            //tf = Double.parseDouble(String.format("%2.10f", tf));
-            //double bottom = w.words.values().size();
-            // tf =  upper / bottom;
-            // tf = Double.parseDouble(String.format("%2.10f", tf));
-
-            // log normalization of term frequency = log(1 + raw count tf)
-            // tf = Math.log10(1 + tf);
-
-            //attempt using raw tf = # times word appears in document (only one that currently works)
-           // tf = upper;
-            //tf = Double.parseDouble(String.format("%2.10f", tf));
-
-            // raw count LAST WORKING ONE 10/2 3:38pm
-           // tf = w.words.get(key);
-           // tf = Double.parseDouble(String.format("%2.10f", tf));
-
             // augmented frequency
             double raw = w.words.get(key); // raw frequency
             tf = Math.log10(1 + raw);
             tf = Double.parseDouble(String.format("%2.10f", tf));
 
         } else if(w.importantWords.containsKey(key)) {
-            //double upper = w.importantWords.get(key);
-           // double bottom = w.words.values().size() + w.importantWords.values().size();
-           // tf = upper / bottom;
-           // tf = Double.parseDouble(String.format("%2.10f", tf));
             tf = w.importantWords.get(key);
             tf = Double.parseDouble(String.format("%2.10f", tf));
         } else {
@@ -156,13 +116,11 @@ public class Website {
         // apply separate weights for heading vs body
         for (String word : allWords) {
             document1[counter] = tf(w1, word) * idf(w, word) *.20;
-            // System.out.println("COUNTER SPOT" + document1[counter]);
             counter += 1;
         }
 
         for (String word : allHeadings) {
             document1[counter] = tf(w1, word) * idf(w, word) *.80;
-            // System.out.println("COUNTER SPOT" + document1[counter]);
             counter += 1;
         }
 
@@ -177,9 +135,6 @@ public class Website {
                 double tf = tf(website, word);
                 double idf = idf(w, word);
 
-                //System.out.println("TF" + tf);
-               // System.out.println("IDF" + idf);
-
                 if (tf == 0 || idf == 0) {
                     document2[counter] = 0;
                 } else {
@@ -191,9 +146,6 @@ public class Website {
             for (String word : allHeadings) {
                 double tf = tf(website, word);
                 double idf = idf(w, word);
-
-                //System.out.println("TF" + tf);
-                //System.out.println("IDF" + idf);
 
                 if (tf == 0 || idf == 0) {
                     document2[counter] = 0;
@@ -246,13 +198,10 @@ public class Website {
         // "hash" the url to get the key
         String filePath;
         if (URL.startsWith("C:") && URL.endsWith(".txt")) {
-            // C:\Users\Rose\IdeaProjects\assignment1_365\httpsenwikipediaorgwikiFifthThirdArena.txt
             filePath = URL;
         } else if (URL.endsWith(".txt")) {
-            // httpsenwikipediaorgwikiGuido_Karptxt
             filePath = System.getProperty("user.dir") + File.separator + getCutURL(URL);
         } else {
-            // https://en.wikipedia.org/wiki/Guido_Karp
             filePath = System.getProperty("user.dir") + File.separator + getCutURL(URL);
         }
 

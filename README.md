@@ -6,3 +6,10 @@ To run project, put into your favorite java editor or follow the following steps
 
     javac foldername.java
     java foldername
+
+Key implementations in these projects:
+
+* JavaFX GUI
+* Resizeable and persistent HashTable
+* Webscraping with Jsoup
+* tf-idf (Term frequency-inverse document frequency) Similarity metrics

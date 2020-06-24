@@ -10,9 +10,13 @@ To run project, put into your favorite java editor or follow the following steps
 Key implementations in these projects:
 
 * JavaFX GUI
-* Resizeable and persistent HashTable
+* Resizeable and persistent HashTable *from scratch*
 * Webscraping with Jsoup
-* tf-idf (Term frequency-inverse document frequency) Similarity metrics
-* Persistent file-based B-Tree
+* Web Crawling
+* tf-idf (Term frequency-inverse document frequency) similarity metrics
+* Persistent File-based B-Tree *from scratch*
 * Fixed size buffer cache
 * 5 cluster categorization with kmeans metric
+* Persistent Graph *from scratch*
+* Number of disjoint sets calculated from graph
+* Dijkstra's algorithm to calculate shortest path

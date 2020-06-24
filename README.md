@@ -13,3 +13,6 @@ Key implementations in these projects:
 * Resizeable and persistent HashTable
 * Webscraping with Jsoup
 * tf-idf (Term frequency-inverse document frequency) Similarity metrics
+* Persistent file-based B-Tree
+* Fixed size buffer cache
+* 5 cluster categorization with kmeans metric
